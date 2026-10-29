@@ -1,2 +1,2 @@
 /* Configura tu número y Supabase. No uses nunca la clave service_role aquí. */
-window.VVS_CONFIG={whatsapp:'569XXXXXXXX',supabaseUrl:'',supabaseAnonKey:''};
+window.VVS_CONFIG={whatsapp:'569XXXXXXXX',supabaseUrl:'https://zxvyhllfmfwbiumafyic.supabase.co/rest/v1/',supabaseAnonKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4dnlobGxmbWZ3Yml1bWFmeWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMyOTk0MTgsImV4cCI6MjEwODg3NTQxOH0.6F9Iu0SkQ3QvF0P-2Nr14KmIe3tcA8p7jCbja0brI6g'};
