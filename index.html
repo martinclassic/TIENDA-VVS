@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171512">
+<title>MJ ICED — Joyas que brillan contigo</title>
+<meta name="description" content="MJ ICED: joyas en moissanita, VVS y circonita. Piezas seleccionadas con atención directa por WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MJ ICED — Joyas que brillan contigo">
+<meta property="og:description" content="Piezas seleccionadas en moissanita, VVS y circonita. Atención directa por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23171512'/%3E%3Cpolygon points='28,32 72,32 88,50 50,86 12,50' fill='none' stroke='%23c6a56a' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M12 50H88M28 32L40 50L50 32L60 50L72 32M40 50L50 86L60 50' fill='none' stroke='%23c6a56a' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="topline">PIEZAS SELECCIONADAS · CONSULTA DISPONIBILIDAD POR WHATSAPP</div>
+<header id="top">
+  <a class="brand" href="#inicio" aria-label="MJ ICED, inicio"><span class="mark">MJ</span><span>ICED</span></a>
+  <nav id="nav" aria-label="Principal">
+    <a href="#vvs-moissanita">VVS &amp; Moissanita</a>
+    <a href="#circonita">Circonita</a>
+    <a href="#packs-section">Packs</a>
+    <a href="#como-comprar">Cómo comprar</a>
+    <a href="#marca">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="headlink wa" href="#">Hablar por WhatsApp ↗</a>
+  <button id="menu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+</header>
+<main>
+  <section class="hero" id="inicio">
+    <div class="intro">
+      <p class="eyebrow">MENOS, PERO MEJOR</p>
+      <h1>El detalle que<br><em>cambia todo.</em></h1>
+      <p class="lead">Joyas para acompañarte todos los días. Una selección pequeña, pensada para quienes prefieren los detalles con carácter.</p>
+      <div class="actions"><a class="goldbtn" href="#coleccion">Ver colección ↓</a><a class="underlink" href="#marca">Conoce MJ ICED ↗</a></div>
+      <p class="note">● Atención directa y personalizada</p>
+    </div>
+    <div class="hero-art">
+      <img src="assets/hero-earrings.jpg" alt="Joyas MJ ICED" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <div class="image-fallback"><svg viewBox="-6 -4 116 104" width="130" aria-hidden="true"><g fill="none" stroke="#c6a56a" stroke-width="3" stroke-linejoin="miter"><polygon points="22,14 78,14 98,38 50,92 2,38"/><path d="M2 38H98M22 14L35 38L50 14L65 38L78 14M35 38L50 92L65 38"/></g><path d="M96 -6Q97.4 4.6 108 6Q97.4 7.4 96 18Q94.6 7.4 84 6Q94.6 4.6 96 -6Z" fill="#e9d6ac"/></svg><small>Tu fotografía principal</small></div>
+      <div class="stamp">MJ<small>ICED</small></div>
+      <div class="caption"><span>01 / LA SELECCIÓN</span><span>Brillo sin exceso.</span></div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div><b>01</b><p><strong>Selección cuidada</strong><small>Pocas piezas, elegidas con intención.</small></p></div>
+    <div><b>02</b><p><strong>Compra directa</strong><small>Resuelve tus dudas antes de comprar.</small></p></div>
+    <div><b>03</b><p><strong>Atención real</strong><small>Te respondemos por WhatsApp.</small></p></div>
+  </section>
+
+  <section class="collection" id="coleccion">
+    <div class="sectionhead">
+      <div><p class="eyebrow">DESCUBRE MJ ICED</p><h2>Nuestras <em>colecciones.</em></h2></div>
+      <p>Dos formas de brillar. Encuentra la pieza que acompaña tu estilo.</p>
+    </div>
+    <section class="category-collection" id="vvs-moissanita">
+      <div class="category-heading">
+        <div><p class="eyebrow">SELECCIÓN PREMIUM</p><h2>VVS &amp; <em>Moissanita</em></h2><p>Piezas de brillo excepcional y detalles que destacan.</p></div>
+        <span class="category-count" id="count-vvs">COLECCIÓN</span>
+      </div>
+      <div id="products-vvs" class="grid"></div>
+    </section>
+    <section class="category-collection" id="circonita">
+      <div class="category-heading">
+        <div><p class="eyebrow">BRILLO PARA CADA DÍA</p><h2><em>Circonita</em></h2><p>Diseños versátiles para sumar un toque especial a cualquier ocasión.</p></div>
+        <span class="category-count" id="count-circonita">COLECCIÓN</span>
+      </div>
+      <div id="products-circonita" class="grid"></div>
+    </section>
+  </section>
+
+  <section class="packs" id="packs-section">
+    <div>
+      <p class="eyebrow">UNA COMBINACIÓN QUE FUNCIONA</p>
+      <h2>Los favoritos,<br><em>juntos.</em></h2>
+      <p>Arma tu combinación ideal o pregunta por nuestros packs disponibles. A veces, el mejor detalle es llevarse los dos.</p>
+      <a class="outlinebtn" href="#coleccion">Ver piezas disponibles ↗</a>
+    </div>
+    <div id="packs" class="packgrid"><div class="packfallback"><span>MJ</span><p>Los packs disponibles aparecerán aquí.</p></div></div>
+  </section>
+
+  <section class="steps" id="como-comprar">
+    <p class="eyebrow">COMPRAR ES SIMPLE</p>
+    <h2>Tres pasos, <em>sin complicaciones.</em></h2>
+    <div class="steps-grid">
+      <div class="step"><b>1</b><h3>Elige tu pieza</h3><p>Explora la colección y abre el detalle de la joya que más te guste.</p></div>
+      <div class="step"><b>2</b><h3>Escríbenos</h3><p>Con un toque te llevamos a WhatsApp con el mensaje listo para confirmar disponibilidad.</p></div>
+      <div class="step"><b>3</b><h3>Coordinamos contigo</h3><p>Acordamos el pago y la entrega directamente, con atención personalizada.</p></div>
+    </div>
+  </section>
+
+  <section class="about" id="marca">
+    <p class="eyebrow">UN POCO SOBRE MJ ICED</p>
+    <div class="aboutgrid">
+      <h2>El lujo también<br>está en <em>lo simple.</em></h2>
+      <div>
+        <p>MJ ICED nace de una idea sencilla: encontrar piezas que se vean bien, se sientan especiales y sean fáciles de combinar con tu propio estilo.</p>
+        <p>Estamos comenzando con una selección acotada. Por eso preferimos atenderte directamente, mostrarte los detalles y ayudarte a elegir con tranquilidad.</p>
+        <a class="underlink wa" href="#">Conversemos ↗</a>
+      </div>
+    </div>
+    <img id="aboutPhoto" class="about-photo" alt="" hidden>
+  </section>
+
+  <section class="faq" id="preguntas">
+    <div class="faq-inner">
+      <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+      <h2>Lo que <em>suelen preguntarnos.</em></h2>
+      <details><summary>¿Cómo hago mi pedido?</summary><p>Elige la pieza, abre su detalle y pulsa “Consultar por WhatsApp”. Te responderemos para confirmar disponibilidad y coordinar el resto contigo.</p></details>
+      <details><summary>¿Qué medios de pago y envíos tienen?</summary><p>Escríbenos por WhatsApp y te confirmamos los medios de pago, las opciones de envío o entrega y los plazos disponibles para tu zona.</p></details>
+      <details><summary>¿Puedo ver más fotos o detalles de una pieza?</summary><p>Claro. Cada producto tiene su galería, y si necesitas una foto adicional o una medida específica, pídela por WhatsApp.</p></details>
+      <details><summary>¿Cómo cuido mis joyas?</summary><p>Guárdalas por separado, evita el contacto con perfumes y productos químicos, y límpialas con un paño suave y seco para mantener su brillo.</p></details>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div><p class="eyebrow">¿TIENES UNA DUDA?</p><h2>Hablemos de tu próxima pieza.</h2></div>
+    <a class="goldbtn wa" href="#">Escríbenos por WhatsApp ↗</a>
+  </section>
+</main>
+<footer>
+  <div class="foot-brand">
+    <a class="brand" href="#inicio"><span class="mark">MJ</span><span>ICED</span></a>
+    <p>Detalles que hablan por ti.</p>
+  </div>
+  <div class="foot-col"><h4>EXPLORA</h4><a href="#vvs-moissanita">VVS &amp; Moissanita</a><a href="#circonita">Circonita</a><a href="#packs-section">Packs</a><a href="#preguntas">Preguntas frecuentes</a></div>
+  <div class="foot-col"><h4>CONTACTO</h4><a class="wa" href="#">WhatsApp ↗</a><a class="footer-ig" href="#" target="_blank" rel="noopener" hidden>Instagram ↗</a></div>
+  <small class="foot-copy">© <span id="year"></span> MJ ICED · Todos los derechos reservados</small>
+</footer>
+<a class="floatwa wa" href="#" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><circle cx="8.5" cy="12" r=".8" fill="currentColor"/><circle cx="12" cy="12" r=".8" fill="currentColor"/><circle cx="15.5" cy="12" r=".8" fill="currentColor"/></svg></a>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
