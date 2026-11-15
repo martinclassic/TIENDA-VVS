@@ -65,3 +65,38 @@ footer{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;align-items:sta
 @media(max-width:850px){.steps,.faq{padding:70px 7%}.steps-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
 @media(max-width:620px){footer{grid-template-columns:1fr;padding:44px 7% 22px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* ===== Contraste reforzado (WCAG AA) ===== */
+:root{--muted:#5a554d;--gold-text:#7d5d24;--soft:#4f4a42}
+nav{color:#2f2b25}
+.mark{color:var(--gold-text)}.mark.has-logo{color:inherit}
+footer .mark{color:var(--gold)}
+.eyebrow,.category{color:var(--gold-text)}
+.hero em,h2 em,.category-heading h2 em{color:#8a6a2c}
+.values b,.step b{color:#8a6a2c}
+.lead,.note,.values small,.sectionhead>p,.count,.desc,.loading,.aboutgrid p,.step p,.faq details p,.category-heading p:not(.eyebrow),.category-count,.detail-description,.detail-stock,.detail-price del{color:var(--soft)}
+.faq summary,.step h3{color:var(--ink)}
+.goldbtn{color:var(--dark)}
+.buy{color:var(--ink);border-color:var(--ink)}.buy:hover{color:#fff}
+.tag{color:var(--ink)}
+.caption{color:#efe6d2;text-shadow:0 1px 8px #000a}
+.image-fallback small{color:#e3d8bf}
+.old{color:#b7ae9f}
+.gallery-arrow{color:var(--dark)}
+
+/* Franja oscura: cómo comprar */
+.steps{background:var(--dark);color:#f3efe6}
+.steps h2{color:#f7f4ed}.steps h2 em,.steps .step b{color:var(--gold)}.steps .eyebrow{color:var(--gold)}
+.steps .step{background:#221e19;border-color:#3a342b}
+.steps .step h3{color:#f7f4ed}.steps .step p{color:#cfc7b8}
+.steps .step:hover{border-color:var(--gold)}
+
+/* Franja dorada: contacto */
+.contact{background:var(--gold);color:var(--dark)}
+.contact h2{color:var(--dark)}.contact h2 em{color:var(--dark)}
+.contact .eyebrow{color:#3a2d12}
+.contact .goldbtn{background:var(--dark);color:#f7f4ed}.contact .goldbtn:hover{background:#000;color:var(--gold)}
+
+/* Franjas con texto claro: asegurar contraste en cada elemento */
+.packs h2,.packs h3{color:#f7f4ed}.packs h2 em{color:var(--gold)}.packs .eyebrow{color:var(--gold)}
+footer h4{color:var(--gold)}
