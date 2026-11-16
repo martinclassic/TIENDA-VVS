@@ -1,2 +1,0 @@
-Coloca aquí tus fotos: hero-earrings.jpg (portada), aros-cuadrados.jpg, aros-redondos.jpg, pack-duo.jpg.
-Si no existen, la tienda muestra el logo VVS en su lugar. Los productos reales usan las fotos subidas desde el panel admin.
