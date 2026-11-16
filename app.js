@@ -3,13 +3,16 @@
   const cfg = window.VVS_CONFIG || {};
   let phone = (cfg.whatsapp || '').replace(/\D/g, '');
   const db = cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase
-    ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey) : null;
+    ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }) : null;
 
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const money = v => new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(Number(v) || 0);
   const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ESC[c]);
+  const safeUrl = u => { try { const x = new URL(String(u || ''), location.href); return /^https?:$/.test(x.protocol) ? x.href : ''; } catch { return ''; } };
+  const hex = v => /^#[0-9a-f]{6}$/i.test(v || '') ? v : null;
+  const font = v => /^[A-Za-z0-9 ]{1,40}$/.test(v || '') ? v : null;
   const wa = text => phone ? `https://wa.me/${phone}?text=${encodeURIComponent(text)}` : 'https://wa.me/';
   const openWA = text => window.open(wa(text), '_blank', 'noopener');
 
@@ -23,12 +26,22 @@
   const finalPrice = p => (Number(p.promo_price) > 0 && Number(p.promo_price) < Number(p.price)) ? Number(p.promo_price) : Number(p.price);
   const isVVS = p => /vvs|moissanita|moissanite/i.test(`${p.category || ''} ${p.name || ''} ${p.description || ''}`);
 
+  /* Imágenes con respaldo (sin manejadores inline, compatible con CSP estricta) */
+  const imgFallback = el => {
+    if (!(el instanceof HTMLImageElement) || !el.dataset.fb) return;
+    if (el.dataset.fb === 'photo') el.outerHTML = '<div class="no-photo">MJ</div>';
+    else if (el.dataset.fb === 'hero') { el.style.display = 'none'; if (el.nextElementSibling) el.nextElementSibling.style.display = 'grid'; }
+    else el.style.display = 'none';
+  };
+  document.addEventListener('error', e => imgFallback(e.target), true);
+  const heroImg = $('.hero-art img'); if (heroImg && heroImg.complete && heroImg.naturalWidth === 0) imgFallback(heroImg);
+
   /* ---------- Tarjetas ---------- */
   function productCard(p) {
     const shown = finalPrice(p), onSale = shown < Number(p.price);
     const tag = p.promo_label ? esc(p.promo_label) : onSale ? 'OFERTA' : Number(p.stock) <= 2 ? 'Pocas unidades' : '';
     const img = p.image_url
-      ? `<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;no-photo&quot;>VVS</div>'">`
+      ? `<img src="${esc(safeUrl(p.image_url))}" alt="${esc(p.name)}" loading="lazy" data-fb="photo">`
       : '<div class="no-photo">MJ</div>';
     return `<article class="product"><div class="product-image">${img}${tag ? `<span class="tag">${tag}</span>` : ''}</div>
       <div class="info"><div class="category">${esc(p.category || 'Selección VVS')}</div>
@@ -37,7 +50,7 @@
       <button class="buy" data-product="${esc(p.id)}">Ver detalles ↗</button></div></article>`;
   }
   function packCard(k) {
-    return `<article class="pack">${k.image_url ? `<img src="${esc(k.image_url)}" alt="${esc(k.name)}" onerror="this.style.display='none'">` : ''}
+    return `<article class="pack">${safeUrl(k.image_url) ? `<img src="${esc(safeUrl(k.image_url))}" alt="${esc(k.name)}" data-fb="hide">` : ''}
       <h3>${esc(k.name)}</h3><p>${esc(k.description || 'Consulta disponibilidad y detalles.')}</p>
       <span class="packprice">${money(k.price)}</span>${k.original_price ? `<span class="old">${money(k.original_price)}</span>` : ''}
       <p><button data-pack="${esc(k.id)}">Consultar pack ↗</button></p></article>`;
@@ -57,14 +70,14 @@
 
   function applySettings(s) {
     const root = document.documentElement.style;
-    root.setProperty('--gold', s.accent_color || '#c6a56a');
-    let bg = s.background_color || '#f6f4ef', tx = s.text_color || '#1b1916';
+    root.setProperty('--gold', hex(s.accent_color) || '#c6a56a');
+    let bg = hex(s.background_color) || '#f6f4ef', tx = hex(s.text_color) || '#1b1916';
     if ((lum(bg) ?? 1) < .5 || (lum(tx) ?? 0) > .25 || ratio(bg, tx) < 4.5) { console.warn('El diseño necesita fondo claro y texto oscuro: se usan los colores originales.'); bg = '#f6f4ef'; tx = '#1b1916'; }
     root.setProperty('--paper', bg);
     root.setProperty('--ink', tx);
-    root.setProperty('--dark', s.dark_color || '#171512');
-    if (s.heading_font && s.heading_font !== 'Playfair Display') { loadFonts([s.heading_font]); root.setProperty('--serif', `'${s.heading_font}',Georgia,serif`); }
-    if (s.body_font && s.body_font !== 'DM Sans') { loadFonts([s.body_font]); root.setProperty('--sans', `'${s.body_font}',Arial,sans-serif`); }
+    root.setProperty('--dark', hex(s.dark_color) || '#171512');
+    if (font(s.heading_font) && s.heading_font !== 'Playfair Display') { loadFonts([s.heading_font]); root.setProperty('--serif', `'${s.heading_font}',Georgia,serif`); }
+    if (font(s.body_font) && s.body_font !== 'DM Sans') { loadFonts([s.body_font]); root.setProperty('--sans', `'${s.body_font}',Arial,sans-serif`); }
     document.body.classList.remove('btn-rounded', 'btn-pill');
     if (s.button_style === 'rounded') document.body.classList.add('btn-rounded');
     if (s.button_style === 'pill') document.body.classList.add('btn-pill');
@@ -75,13 +88,13 @@
 
     text('.topline', s.topline);
     if (s.brand_name && s.brand_name !== DEFAULTS.brand_name) $$('.brand > span:last-child').forEach(el => el.textContent = s.brand_name);
-    else if (s.logo_url && s.brand_name === '') $$('.brand > span:last-child').forEach(el => el.style.display = 'none');
-    if (s.logo_url) $$('.brand .mark').forEach(m => { m.innerHTML = `<img src="${esc(s.logo_url)}" alt="${esc(s.brand_name || 'Logo')}">`; m.classList.add('has-logo'); });
+    else if (safeUrl(s.logo_url) && s.brand_name === '') $$('.brand > span:last-child').forEach(el => el.style.display = 'none');
+    if (safeUrl(s.logo_url)) $$('.brand .mark').forEach(m => { m.innerHTML = `<img src="${esc(safeUrl(s.logo_url))}" alt="${esc(s.brand_name || 'Logo')}">`; m.classList.add('has-logo'); });
     text('.hero .eyebrow', s.hero_eyebrow);
     title('.hero h1', 'hero_title');
     text('.lead', s.hero_subtitle);
     if (s.hero_button) text('.hero .goldbtn', s.hero_button + ' ↓');
-    if (s.hero_image) { const img = $('.hero-art img'); if (img) { img.src = s.hero_image; img.style.display = 'block'; img.nextElementSibling.style.display = 'none'; } }
+    if (safeUrl(s.hero_image)) { const img = $('.hero-art img'); if (img) { img.src = safeUrl(s.hero_image); img.style.display = 'block'; img.nextElementSibling.style.display = 'none'; } }
     [1, 2, 3].forEach(n => {
       text(`.values > div:nth-child(${n}) strong`, s[`value${n}_title`]);
       text(`.values > div:nth-child(${n}) small`, s[`value${n}_text`]);
@@ -93,11 +106,11 @@
     title('.about h2', 'about_title');
     text('.aboutgrid > div p:nth-child(1)', s.about_text1);
     text('.aboutgrid > div p:nth-child(2)', s.about_text2);
-    if (s.about_image) { const im = $('#aboutPhoto'); im.src = s.about_image; im.hidden = false; }
+    if (safeUrl(s.about_image)) { const im = $('#aboutPhoto'); im.src = safeUrl(s.about_image); im.hidden = false; }
     text('.foot-brand p', s.footer_text);
     text('.contact h2', s.contact_text);
     if (s.contact_button) text('.contact .goldbtn', s.contact_button + ' ↗');
-    if (s.instagram_url) { const ig = $('.footer-ig'); ig.href = s.instagram_url; ig.hidden = false; }
+    if (/^https:\/\/(www\.)?instagram\.com\//i.test(s.instagram_url || '')) { const ig = $('.footer-ig'); ig.href = s.instagram_url; ig.hidden = false; }
     toggle('.values', s.show_values);
     toggle('#packs-section, nav a[href="#packs-section"]', s.show_packs);
     toggle('#marca, nav a[href="#marca"]', s.show_about);
@@ -131,7 +144,7 @@
         ]);
         if (p.error) { failed = true; console.error('Productos:', p.error.message); } else products = (p.data || []).filter(x => Number(x.stock) > 0);
         if (k.error) console.error('Packs:', k.error.message); else packs = k.data || [];
-        if (!gi.error) (gi.data || []).forEach(im => (gallery[im.product_id] ??= []).push(im.image_url));
+        if (!gi.error) (gi.data || []).forEach(im => (gallery[im.product_id] ??= []).push(safeUrl(im.image_url)));
         if (!st.error && st.data) applySettings(st.data);
       } catch (e) { failed = true; console.error('No se pudo conectar con Supabase:', e); }
     }
@@ -178,7 +191,7 @@
   }
   function showDetail(p) {
     if (!modal) buildModal();
-    imgs = gallery[p.id]?.length ? gallery[p.id] : [p.image_url].filter(Boolean);
+    imgs = (gallery[p.id]?.length ? gallery[p.id] : [safeUrl(p.image_url)]).filter(Boolean);
     idx = 0;
     const shown = finalPrice(p);
     modal.querySelector('.detail-category').textContent = p.category || 'Colección';

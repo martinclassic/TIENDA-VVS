@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://zxvyhllfmfwbiumafyic.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#171512">
 <title>MJ ICED — Joyas que brillan contigo</title>
 <meta name="description" content="MJ ICED: joyas en moissanita, VVS y circonita. Piezas seleccionadas con atención directa por WhatsApp.">
@@ -39,7 +41,7 @@
       <p class="note">● Atención directa y personalizada</p>
     </div>
     <div class="hero-art">
-      <img src="assets/hero-earrings.jpg" alt="Joyas MJ ICED" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <img src="assets/hero-earrings.jpg" alt="Joyas MJ ICED" data-fb="hero">
       <div class="image-fallback"><svg viewBox="-6 -4 116 104" width="130" aria-hidden="true"><g fill="none" stroke="#c6a56a" stroke-width="3" stroke-linejoin="miter"><polygon points="22,14 78,14 98,38 50,92 2,38"/><path d="M2 38H98M22 14L35 38L50 14L65 38L78 14M35 38L50 92L65 38"/></g><path d="M96 -6Q97.4 4.6 108 6Q97.4 7.4 96 18Q94.6 7.4 84 6Q94.6 4.6 96 -6Z" fill="#e9d6ac"/></svg><small>Tu fotografía principal</small></div>
       <div class="stamp">MJ<small>ICED</small></div>
       <div class="caption"><span>01 / LA SELECCIÓN</span><span>Brillo sin exceso.</span></div>
@@ -132,7 +134,7 @@
   <small class="foot-copy">© <span id="year"></span> MJ ICED · Todos los derechos reservados</small>
 </footer>
 <a class="floatwa wa" href="#" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><circle cx="8.5" cy="12" r=".8" fill="currentColor"/><circle cx="12" cy="12" r=".8" fill="currentColor"/><circle cx="15.5" cy="12" r=".8" fill="currentColor"/></svg></a>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
 </body>

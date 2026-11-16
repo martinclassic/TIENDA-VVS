@@ -74,3 +74,11 @@ Ejecuta `store-customization-v2.sql` una vez en Supabase. Luego, en el panel > "
 
 ## Preguntas frecuentes y pasos de compra
 Están escritos en `index.html` (secciones `#como-comprar` y `#preguntas`). Edita ahí los textos para que reflejen tus medios de pago, envíos y políticas reales.
+
+
+## Seguridad (hazlo en este orden)
+1. En Supabase > Authentication > Users revisa que solo exista TU cuenta y borra las desconocidas.
+2. Desactiva los registros públicos: Authentication > Sign In / Providers > apaga "Allow new users to sign up".
+3. Abre `security-hardening.sql`, cambia `TU_CORREO@EJEMPLO.COM` por tu correo y ejecútalo en el SQL Editor (después de los demás SQL).
+4. Sube los archivos nuevos al sitio (incluye la carpeta `vendor/`, `_headers` y `robots.txt`).
+5. Usa una contraseña larga y única para tu cuenta de administrador.
